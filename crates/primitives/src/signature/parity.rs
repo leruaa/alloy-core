@@ -1,3 +1,5 @@
+use serde::{Deserialize, Serialize};
+
 use crate::{
     signature::{utils::normalize_v_to_byte, SignatureError},
     to_eip155_v, ChainId, Uint, U64,
@@ -5,7 +7,7 @@ use crate::{
 
 /// The parity of the signature, stored as either a V value (which may include
 /// a chain id), or the y-parity.
-#[derive(Clone, Copy, Debug, Hash, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, Hash, PartialEq, Eq, Serialize, Deserialize)]
 #[cfg_attr(feature = "arbitrary", derive(derive_arbitrary::Arbitrary, proptest_derive::Arbitrary))]
 pub enum Parity {
     /// Explicit V value. May be EIP-155 modified.
